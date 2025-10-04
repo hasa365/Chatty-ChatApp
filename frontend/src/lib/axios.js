@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
     baseURL: import.meta.env.MODE === "development" 
-    ? `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api` 
-    : `${import.meta.env.VITE_API_URL}/api`,
+    ? `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}` 
+    : `${import.meta.env.VITE_API_URL}`,
     withCredentials: true,
 });
 
