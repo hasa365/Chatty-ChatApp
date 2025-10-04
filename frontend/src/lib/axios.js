@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
     baseURL: import.meta.env.MODE === "development" 
-    ? 'http://localhost:5000'
-    : 'https://chatty-chatapp-production.up.railway.app',
+    ? 'http://localhost:5000/api'
+    : 'https://chatty-chatapp-production.up.railway.app/api',
     withCredentials: true,
 });
 
