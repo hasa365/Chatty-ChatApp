@@ -18,6 +18,7 @@ const ChatContainer = () => {
   } = useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
+  const getSenderId = (msg) => msg.senderId._id || msg.senderId;
 
   useEffect(() => {
     getMessages(selectedUser._id);
@@ -25,7 +26,12 @@ const ChatContainer = () => {
     subscribeToMessages();
 
     return () => unsubscribeFromMessages();
-  }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
+  }, [
+    selectedUser._id,
+    getMessages,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  ]);
 
   useEffect(() => {
     if (messageEndRef.current && messages) {
@@ -51,14 +57,16 @@ const ChatContainer = () => {
         {messages.map((message) => (
           <div
             key={message._id}
-            className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
+            className={`chat ${
+              getSenderId(message) === authUser._id ? "chat-end" : "chat-start"
+            }`}
             ref={messageEndRef}
           >
             <div className=" chat-image avatar">
               <div className="size-10 rounded-full border">
                 <img
                   src={
-                    message.senderId === authUser._id
+                    getSenderId(message) === authUser._id
                       ? authUser.profilePic || "/avatar.png"
                       : selectedUser.profilePic || "/avatar.png"
                   }

@@ -48,11 +48,14 @@ export const useChatStore = create((set, get) => ({
         if (!selectedUser) return;
 
         const socket = useAuthStore.getState().socket;
+        const authUser = useAuthStore.getState().authUser;
 
         socket.on("newMessage", (newMessage) => {
+            const senderId = newMessage.senderId._id || newMessage.senderId;
+            const receiverId = newMessage.receiverId._id || newMessage.receiverId;
             const isMessageRelevant =
-                (newMessage.senderId === selectedUser._id && newMessage.receiverId === authUser._id) ||
-                (newMessage.senderId === authUser._id && newMessage.receiverId === selectedUser._id);
+                (senderId === selectedUser._id && receiverId === authUser._id) ||
+                (senderId === authUser._id &&  receiverId === selectedUser._id);
 
             if (!isMessageRelevant) return;
 
