@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
     baseURL: import.meta.env.MODE === "development" 
-    ? `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}` 
-    : `${import.meta.env.VITE_API_URL}`,
+    ? 'http://localhost:5000'
+    : 'https://chatty-chatapp-production.up.railway.app',
     withCredentials: true,
 });
 
