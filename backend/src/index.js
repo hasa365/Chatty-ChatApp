@@ -21,7 +21,7 @@ app.use(
     cors({
         origin: [
       "http://localhost:5173",             // dev
-      "https://chatty-chat-app-frontend.vercel.app",  // prod (replace with actual URL)
+      "https://chatty-chat-app-frontend-iisjjgrdg-hasa365s-projects.vercel.app",  // prod (replace with actual URL)
     ],
         credentials: true,
     })
